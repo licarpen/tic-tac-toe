@@ -99,7 +99,35 @@ def utility(board):
         return 0
 
 def minimax(board):
-    """
-    Returns the optimal action for the current player on the board.
-    """
-    raise NotImplementedError
+    best_score = -2
+    current_actions = actions(board)
+    for action in current_actions:
+        current_board = result(board, action)
+        score = get_utility(current_board)
+        print(action, current_board, score)
+        if score > best_score:
+            best_score = score
+            best_move = action
+    return best_move
+    
+def get_utility(board):
+    if terminal(board):
+        return utility(board)
+    current_player = player(board)
+    if current_player == 'X':
+        best_score = -2
+        current_actions = actions(board)   
+        for action in current_actions:
+            current_board = result(board, action)
+            score = get_utility(current_board)
+            best_score = max(best_score, score)
+            print(best_score)
+        return best_score
+    else:
+        best_score = 2
+        current_actions = actions(board) 
+        for action in current_actions:
+            current_board = result(board, action)
+            score = get_utility(current_board)
+            best_score = min(best_score, score)
+        return best_score
