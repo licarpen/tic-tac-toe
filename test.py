@@ -1,5 +1,5 @@
-from tictactoe import player, actions, result, winner
+from tictactoe import player, actions, result, winner, terminal, utility, minimax
 
-test_board = [[None, 'X', 'O'], [None, 'O', None], [None, None, 'X']]
+test_board = [['X', None,'O'], ['X', 'X', 'O'], ['O', None, None]]
 
-print(winner(test_board))
+print(minimax(test_board))
